@@ -1,10 +1,10 @@
 import React from 'react'
 
-import KiboHeroCarousel from '../Carousel/KiboHeroCarousel'
-import CmsHomePageProducts from '../CmsHomePageProducts/CmsHomePageProducts'
-import ContentTile from '../ContentTile/ContentTile'
-import SmallBanner from '../SmallBanner/SmallBanner'
+import KiboHeroCarousel from '../../../components/home/Carousel/KiboHeroCarousel'
+import ContentTile from '../../../components/home/ContentTile/ContentTile'
+import SmallBanner from '../../../components/home/SmallBanner/SmallBanner'
 import { ProductRecommendations } from '@/components/product'
+import CmsHomePageProducts from '../CmsHomePageProducts/CmsHomePageProducts'
 
 interface CmsComponentProps {
   content: any
@@ -15,6 +15,7 @@ interface SmallBannerProps {
   title: string
   subtitle: string
   call_to_action_link: { title: string; href: string }
+  background_color: string
 }
 
 interface KiboHeroCarouselProps {
@@ -56,7 +57,7 @@ const DefaultComponentMap = {
             title: data?.call_to_action_link?.title,
             url: data?.call_to_action_link?.href,
           },
-          backgroundColor: '#A12E87',
+          backgroundColor: data?.background_color,
         },
       }
     },

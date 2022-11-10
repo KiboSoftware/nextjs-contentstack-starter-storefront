@@ -12,9 +12,9 @@ const mockCmsHomePageResult = cmsHomePageResultMock
 const SmallBannerMock = () => <div data-testid="small-banner-component" />
 const HeroCarouselMock = () => <div data-testid="hero-carousel-component" />
 const ContentTileMock = () => <div data-testid="content-tile-component" />
-jest.mock('@/components/home/SmallBanner/SmallBanner', () => SmallBannerMock)
-jest.mock('@/components/home/Carousel/KiboHeroCarousel', () => HeroCarouselMock)
-jest.mock('@/components/home/ContentTile/ContentTile', () => ContentTileMock)
+jest.mock('@/components/home/SmallBanner/SmallBanner', () => () => SmallBannerMock())
+jest.mock('@/components/home/Carousel/KiboHeroCarousel', () => () => HeroCarouselMock())
+jest.mock('@/components/home/ContentTile/ContentTile', () => () => ContentTileMock())
 
 describe('[component] - OrderHistory', () => {
   const setup = (args = Common.args) => {
