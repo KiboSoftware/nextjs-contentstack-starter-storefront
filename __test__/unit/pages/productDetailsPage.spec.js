@@ -7,18 +7,33 @@ import ProductDetailPage, {
   getStaticProps,
 } from '../../../pages/product/[productCode]'
 import { categoryTreeDataMock } from '@/__mocks__/stories/categoryTreeDataMock'
+import { cmsProductDetailMock } from '@/__mocks__/stories/cmsProductDetailMock'
 
 nextRouter.useRouter = jest.fn()
 const mockCategoryTreeData = categoryTreeDataMock
+const mockProductDetailResult = {
+  components: cmsProductDetailMock,
+}
 
 jest.mock('next/config', () => () => ({
   publicRuntimeConfig: {
     maxCookieAge: 10,
+    contentstack: {
+      apiKey: 'api_key',
+      deliveryToken: 'delivery_token',
+      environment: 'environment',
+      managementToken: 'management_token',
+      apiHost: 'api_host',
+    },
   },
   serverRuntimeConfig: {
     revalidate: 60,
     pageSize: 100,
   },
+}))
+
+jest.mock('@/cms', () => ({
+  onEntryChange: jest.fn(),
 }))
 
 jest.mock('@/lib/api/util', () => ({
@@ -29,6 +44,7 @@ jest.mock('@/lib/api/util', () => ({
           productCode: 'mocked-product',
         },
         categoriesTree: { items: mockCategoryTreeData.categoriesTree?.items },
+        cmsProductDetail: mockProductDetailResult,
         products: {
           items: [
             {
@@ -103,6 +119,7 @@ describe('[page] Product Details Page', () => {
           productCode: 'mocked-product',
         },
         categoriesTree: mockCategoryTreeData.categoriesTree.items,
+        cmsProductDetail: mockProductDetailResult,
         _nextI18Next: {
           initialI18nStore: { 'mock-locale': [{}], en: [{}] },
           initialLocale: 'mock-locale',

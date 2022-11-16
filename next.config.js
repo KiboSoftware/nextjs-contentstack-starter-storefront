@@ -21,6 +21,7 @@ module.exports = {
       'cdn-sb.mozu.com',
       'encrypted-tbn0.gstatic.com',
       'images.ctfassets.net',
+      'images.contentstack.io',
     ],
   },
   publicRuntimeConfig: {
@@ -80,6 +81,13 @@ module.exports = {
     defaultWishlistName: DEFAULT_WISHLIST_NAME,
     pciHost: process.env.KIBO_PCI_HOST,
     apiHost: process.env.KIBO_API_HOST,
+    contentstack: {
+      apiKey: process.env.NEXT_PUBLIC_CONTENTSTACK_API_KEY,
+      deliveryToken: process.env.NEXT_PUBLIC_CONTENTSTACK_DELIVERY_TOKEN,
+      environment: process.env.NEXT_PUBLIC_CONTENTSTACK_ENVIRONMENT,
+      managementToken: process.env.NEXT_PUBLIC_CONTENTSTACK_MANAGEMENT_TOKEN,
+      apiHost: process.env.NEXT_PUBLIC_CONTENTSTACK_API_HOST,
+    },
   },
   serverRuntimeConfig: {
     revalidate: process.env.GLOBAL_PAGE_REVALIDATE || 30,
