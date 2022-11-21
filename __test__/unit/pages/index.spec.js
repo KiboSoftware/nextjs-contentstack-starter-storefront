@@ -1,9 +1,23 @@
+import { render, screen } from '@testing-library/react'
 import { categoryTreeDataMock } from '@/__mocks__/stories/categoryTreeDataMock'
 import { homePageResultMock } from '@/__mocks__/stories/homePageResultMock'
-import { getServerSideProps } from '@/pages/index'
+import Home, { getServerSideProps } from '@/pages/index'
+import { cmsHomePageResultMock } from '@/__mocks__/stories/cmsHomePageResultMock'
 
 const mockCategoryTreeData = categoryTreeDataMock
 const mockHomePageResult = homePageResultMock || []
+
+const CmsComponentMock = () => <div data-testid="cms-component" />
+
+jest.mock('@/cms/components/CmsComponent/CmsComponent', () => () => CmsComponentMock())
+
+const mockCmsHomePageResult = cmsHomePageResultMock
+
+const mockCmsResultDataMock = {
+  cmsPage: {
+    components: mockCmsHomePageResult,
+  },
+}
 
 jest.mock('next/config', () => {
   return () => ({
@@ -19,6 +33,13 @@ jest.mock('next/config', () => {
         ],
         pageSize: 16,
       },
+      contentstack: {
+        apiKey: 'api_key',
+        deliveryToken: 'delivery_token',
+        environment: 'environment',
+        managementToken: 'management_token',
+        apiHost: 'api_host',
+      },
     },
     serverRuntimeConfig: {
       cacheKey: 'categoryTree',
@@ -27,12 +48,16 @@ jest.mock('next/config', () => {
   })
 })
 
+jest.mock('@/cms', () => ({
+  onEntryChange: jest.fn(),
+}))
+
 jest.mock('@/lib/api/util', () => ({
   fetcher: jest.fn(() => {
     return Promise.resolve({
       data: {
         categoriesTree: { items: mockCategoryTreeData.categoriesTree?.items },
-        carouselItem: mockHomePageResult,
+        cmsPage: mockHomePageResult,
       },
     })
   }),
@@ -51,6 +76,9 @@ jest.mock('next-i18next/serverSideTranslations', () => ({
 }))
 
 describe('Home', () => {
+  const setup = (args) => {
+    render(<Home {...args} />)
+  }
   it('should run getServerSideProps method', () => {
     const context = {
       params: {},
@@ -66,8 +94,16 @@ describe('Home', () => {
           userConfig: { i18n: [{}] },
         },
         categoriesTree: mockCategoryTreeData.categoriesTree.items,
-        carouselItem: mockHomePageResult,
+        cmsPage: mockHomePageResult,
       },
     })
+  })
+
+  it('renders without crashing', () => {
+    setup(mockCmsResultDataMock)
+
+    const CmsComponent = screen.getAllByTestId('cms-component')
+
+    expect(CmsComponent.length).toEqual(mockCmsResultDataMock?.cmsPage?.components?.length)
   })
 })
