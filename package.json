@@ -21,6 +21,7 @@
     "generate-docs:hooks": "npx typedoc --entryPointStrategy expand hooks/ --out docs/hooks --readme none --exclude \"**/*+(.spec)+(.ts|.tsx)\" --exclude \"**/index.ts\" "
   },
   "dependencies": {
+    "@contentstack/live-preview-utils": "^1.2.1",
     "@emotion/cache": "latest",
     "@emotion/css": "latest",
     "@emotion/react": "latest",
@@ -32,6 +33,8 @@
     "@mui/icons-material": "^5.10.16",
     "@mui/material": "^5.10.16",
     "@mui/x-date-pickers": "^5.0.13",
+    "@testing-library/react-hooks": "^8.0.0",
+    "contentstack": "^3.15.4",
     "cookies-next": "^2.1.1",
     "core-js": "^3.24.0",
     "credit-card-type": "^9.1.0",
