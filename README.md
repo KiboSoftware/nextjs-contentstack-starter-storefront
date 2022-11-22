@@ -1,4 +1,4 @@
-<h2 align="center">KiboCommerce & Next.JS</h2>
+<h2 align="center">KiboCommerce & Next.JS & ContentStack</h2>
 
 <p align="center">
 This is a headless ecommerce starter kit for KiboCommerce platform using Next.JS <br>
@@ -17,13 +17,14 @@ Demo: <a href="https://nextjs-storefront-kibo-commerce.vercel.app">https://nextj
 - KiboCommerce data hooks
 - PWA Ready
 - Omni Channel Capability (Ship to home and Pickup in Store support)
+- ContentStack Intergration
 
 ## Getting Started
 
 1. Clone this repo
 
 ```bash
-git clone https://github.com/KiboSoftware/nextjs-storefront.git
+git clone https://github.com/KiboSoftware/nextjs-contentstack-starter-storefront.git
 ```
 
 2. Change into directory and install dependencies
@@ -54,6 +55,12 @@ KIBO_API_HOST=t1234-s1234.sandbox.mozu.com
 KIBO_AUTH_HOST=home.mozu.com
 KIBO_CLIENT_ID=KIBO_APP.1.0.0.Release
 KIBO_SHARED_SECRET=12345_Secret
+
+NEXT_PUBLIC_CONTENTSTACK_API_KEY=123_api_secret
+NEXT_PUBLIC_CONTENTSTACK_DELIVERY_TOKEN=123_delivery_token
+NEXT_PUBLIC_CONTENTSTACK_ENVIRONMENT=123_environment
+NEXT_PUBLIC_CONTENTSTACK_MANAGEMENT_TOKEN=123_management_token
+NEXT_PUBLIC_CONTENTSTACK_API_HOST=123_api-host
 ```
 
 The following data is required to configure the storefront to communicate with your Kibo API Client.
@@ -83,6 +90,17 @@ npm run test # run unit / integration tests
 - Testing - [Jest](https://jestjs.io/docs/getting-started)
 - Data Fetching / State Management - [React Query](https://react-query-v3.tanstack.com/overview)
 - Localization - [Next i18Next](https://github.com/i18next/next-i18next)
+
+## Pre-requisite
+
+- Follow Steps mentioned in link for configuring contentstack cms (https://github.com/KiboSoftware/stack-contentstack)
+- Next, after above steps data can be created on contentstack website (Need an account prior on contentstack cms)
+
+## Preview mode in Content Stack
+
+- Live Preview allows content managers to preview content without publishing it to an environment or saving the changes made to the content. The content changes you make reflect in the preview pane in real-time.
+- You can also preview your content changes across multiple channels, such as mobiles, tablets, and desktops. This flexibility allows you to ensure website content looks precisely how you intended, and thus helps achieve omnichannel content delivery.
+- Once configured, the Live Preview icon will be visible in the right-hand side panel of the entry editor page for all entries of the stack. When you click on the icon, the preview window opens up towards the right-hand side of the entry editor page.
 
 ## Contributions
 
