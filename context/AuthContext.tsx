@@ -14,7 +14,7 @@ import { useQueryClient } from 'react-query'
 
 import { LoginData } from '@/components/layout/Login/LoginContent/LoginContent'
 import type { RegisterAccountInputData } from '@/components/layout/RegisterAccount/Content/Content'
-import { useRegister, useLogin, useUserQueries } from '@/hooks'
+import { useRegister, useLogin, useGetCurrentCustomer } from '@/hooks'
 import { removeClientCookie, storeClientCookie } from '@/lib/helpers/cookieHelper'
 import { cartKeys, loginKeys, wishlistKeys } from '@/lib/react-query/queryKeys'
 
@@ -141,7 +141,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     setUser(account?.customerAccount)
   }
 
-  const { data: customerAccount } = useUserQueries()
+  const { data: customerAccount } = useGetCurrentCustomer()
 
   const values = {
     isAuthenticated,

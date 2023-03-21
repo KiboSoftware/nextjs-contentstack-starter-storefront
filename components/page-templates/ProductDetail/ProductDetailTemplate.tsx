@@ -39,12 +39,12 @@ import {
 import { useModalContext } from '@/context'
 import {
   useProductDetailTemplate,
-  usePurchaseLocationQueries,
+  useGetPurchaseLocation,
   useAddCartItem,
   useWishlist,
-  useProductLocationInventoryQueries,
+  useGetProductInventory,
   usePriceRangeFormatter,
-  useProductPriceQueries,
+  useGetProductPrice,
 } from '@/hooks'
 import { FulfillmentOptions as FulfillmentOptionsConstant, PurchaseTypes } from '@/lib/constants'
 import { productGetters, subscriptionGetters, wishlistGetters } from '@/lib/getters'
@@ -96,14 +96,14 @@ const ProductDetailTemplate = (props: ProductDetailTemplateProps) => {
   const [isSubscriptionPricingSelected, setIsSubscriptionPricingSelected] = useState<boolean>(false)
 
   const isSubscriptionModeAvailable = subscriptionGetters.isSubscriptionModeAvailable(product)
-  const { data: productPriceResponse } = useProductPriceQueries(
+  const { data: productPriceResponse } = useGetProductPrice(
     product?.productCode as string,
     isSubscriptionPricingSelected
   )
 
   const { showModal, closeModal } = useModalContext()
   const { addToCart } = useAddCartItem()
-  const { data: purchaseLocation } = usePurchaseLocationQueries()
+  const { data: purchaseLocation } = useGetPurchaseLocation()
 
   const { addOrRemoveWishlistItem, checkProductInWishlist } = useWishlist()
 
@@ -144,7 +144,7 @@ const ProductDetailTemplate = (props: ProductDetailTemplateProps) => {
     },
     productPriceResponse?.price as ProductPrice
   )
-  const { data: locationInventory } = useProductLocationInventoryQueries(
+  const { data: locationInventory } = useGetProductInventory(
     (variationProductCode || productCode) as string,
     selectedFulfillmentOption?.location?.code as string
   )
