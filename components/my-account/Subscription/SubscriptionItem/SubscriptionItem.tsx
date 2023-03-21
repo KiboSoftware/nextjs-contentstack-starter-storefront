@@ -31,8 +31,8 @@ import {
   useUpdateSubscriptionNextOrderDateMutation,
   useUpdateSubscriptionFulfillmentInfoMutation,
   useUpdateSubscriptionPaymentMutation,
-  useCustomerCardsQueries,
-  useCustomerContactsQueries,
+  useGetCards,
+  useGetCustomerAddresses,
   useCreateCustomerCardsMutation,
   useCreateCustomerAddressMutation,
   usePerformSubscriptionActionMutation,
@@ -138,8 +138,8 @@ const SubscriptionItem = (props: SubscriptionItemProps) => {
   const { updateSubscriptionFulfillmentInfoMutation } =
     useUpdateSubscriptionFulfillmentInfoMutation()
   const { updateSubscriptionPaymentMutation } = useUpdateSubscriptionPaymentMutation()
-  const { data: cards } = useCustomerCardsQueries(user?.id as number)
-  const { data: contacts } = useCustomerContactsQueries(user?.id as number)
+  const { data: cards } = useGetCards(user?.id as number)
+  const { data: contacts } = useGetCustomerAddresses(user?.id as number)
   const { addSavedCardDetails } = useCreateCustomerCardsMutation()
   const { addSavedAddressDetails } = useCreateCustomerAddressMutation()
 

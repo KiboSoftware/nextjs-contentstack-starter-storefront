@@ -5,7 +5,7 @@ import { WishlistPopover } from '@/components/dialogs'
 import { LoginDialog } from '@/components/layout'
 import { useAuthContext, useModalContext } from '@/context'
 import {
-  useWishlistQueries,
+  useGetWishlist,
   useAddToWishlistMutation,
   useRemoveWishlistItemMutation,
   useCreateWishlistMutation,
@@ -33,7 +33,7 @@ import type {
 export const useWishlist = (params?: WishlistHookParams) => {
   const { showModal } = useModalContext()
 
-  const { data: wishlist } = useWishlistQueries()
+  const { data: wishlist } = useGetWishlist()
   const { addToWishlist } = useAddToWishlistMutation()
   const { removeWishlistItem } = useRemoveWishlistItemMutation(params)
   const { createWishlist } = useCreateWishlistMutation()
