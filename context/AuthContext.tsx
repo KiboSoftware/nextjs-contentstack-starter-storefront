@@ -15,7 +15,7 @@ import { useQueryClient } from 'react-query'
 import { LoginData } from '@/components/layout/Login/LoginContent/LoginContent'
 import type { RegisterAccountInputData } from '@/components/layout/RegisterAccount/Content/Content'
 import { useUserAccountRegistrationMutations, useUserMutations, useUserQueries } from '@/hooks'
-import { removeClientCookie } from '@/lib/helpers/cookieHelper'
+import { removeClientCookie } from '@/lib/helpers'
 import { cartKeys, loginKeys, wishlistKeys } from '@/lib/react-query/queryKeys'
 
 import type { CustomerAccount } from '@/lib/gql/types'
