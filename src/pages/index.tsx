@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-import nextI18NextConfig from '../next-i18next.config'
 import { onEntryChange } from '@/cms'
 import { CmsComponent } from '@/cms/components'
 import { getPage } from '@/cms/operations/get-page'
@@ -40,7 +39,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     props: {
       categoriesTree,
       cmsPage,
-      ...(await serverSideTranslations(locale as string, ['common'], nextI18NextConfig)),
+      ...(await serverSideTranslations(locale as string, ['common'])),
     },
   }
 }
